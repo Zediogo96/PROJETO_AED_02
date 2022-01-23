@@ -8,6 +8,7 @@
 #include "MinHeap.h"
 #include <vector>
 #include <list>
+#include <map>
 #include <iostream>
 
 using namespace std;
@@ -16,7 +17,7 @@ class Graph {
     struct Edge {
         int dest;   // Destination node
         int weight; // An integer weight
-        string line; //
+        string line; // Bus line
     };
 
     struct Node {
@@ -31,6 +32,7 @@ class Graph {
     int n;              // Graph size (vertices are numbered from 1 to n)
     bool hasDir;        // false: undirect; true: directed
     vector<Node> nodes; // The list of nodes being represented
+    map<string, int> stops;
 
     void dijkstra(int s);
 
@@ -39,15 +41,16 @@ public:
     Graph(int nodes, bool dir = false);
 
     // Add edge from source to destination with a certain weight
-    void addEdge(int src, int dest, int weight = 1);
+    void addEdge(int src, int dest, string line, int weight = 1);
 
     // ----- Functions to implement in this class -----
     int dijkstra_distance(int a, int b);
     list<int> dijkstra_path(int a, int b);
 
-    int getNumberNodes();
 
     void readStops();
+    void readLines();
+    void readLine(string code);
 };
 
 #endif //PROJETO2_GRAPH_H

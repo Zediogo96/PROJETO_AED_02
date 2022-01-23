@@ -46,7 +46,8 @@ int countLines(string filename) {
 int main() {
     Graph graph = Graph(countLines("../Data/stops.csv"), true);
     graph.readStops();
-
+    graph.readLines();
+    
     double lat3 = 41.14954216;
     double lon3 = -8.610023615;
 
