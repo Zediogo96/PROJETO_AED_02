@@ -6,6 +6,7 @@
 #include <climits>
 #include <set>
 #include <fstream>
+#include "Utility.h"
 
 #define INFINITE INT_MAX;
 
@@ -14,7 +15,7 @@ Graph::Graph(int num, bool dir) : n(num), hasDir(dir), nodes(num+1) {
 }
 
 // Add edge from source to destination with a certain weight
-void Graph::addEdge(int src, int dest, string line, int weight) {
+void Graph::addEdge(int src, int dest, string line, double weight) {
     if (src<1 || src>n || dest<1 || dest>n) return;
     nodes[src].adj.push_back({dest, weight, line});
     if (!hasDir) nodes[dest].adj.push_back({src, weight, line});
@@ -47,10 +48,6 @@ void Graph::readStops() {
         nodes[i].latitude = stof(latitude);
         nodes[i].longitude = stof(longitude);
         stops.insert({code, i});
-        //cout << nodes[i].name << " ";
-        //cout << nodes[i].zone << " ";
-        //cout << nodes[i].latitude << " ";
-        //cout << nodes[i].longitude<< endl;
 
     }
     file.close();
@@ -103,7 +100,13 @@ void Graph::readLine(string code) {
         string dest;
         for (int i = 0; i < num_stops; i++) {
             getline(file, dest);
-            addEdge(stops[source], stops[dest], code, 1);
+
+            double lat1 = nodes[stops[source]].latitude;
+            double lon1 = nodes[stops[source]].longitude;
+            double lat2 = nodes[stops[dest]].latitude;
+            double lon2 = nodes[stops[dest]].longitude;
+
+            addEdge(stops[source], stops[dest], code, haversine(lat1,lon1,lat2,lon2));
             source = dest;
         }
 
