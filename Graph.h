@@ -9,6 +9,7 @@
 #include <vector>
 #include <list>
 #include <map>
+#include <queue>
 #include <iostream>
 
 using namespace std;
@@ -42,6 +43,10 @@ public:
 
     // Add edge from source to destination with a certain weight
     void addEdge(int src, int dest, string line, int weight = 1);
+
+
+    // Algorithms
+    void bfs(int v);
 
     // ----- Functions to implement in this class -----
     int dijkstra_distance(int a, int b);

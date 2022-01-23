@@ -79,12 +79,6 @@ void Graph::readLines() {
     }
 
     file.close();
-    for(auto node : nodes) {
-        cout << node.name << ": ";
-        for (auto edge : node.adj)
-            cout << edge.line << " ";
-        cout << endl;
-    }
 }
 
 void Graph::readLine(string code) {
@@ -175,6 +169,25 @@ void Graph::dijkstra(int s) {
                 nodes[e].dist = nodes[u].dist + w;
                 q.decreaseKey(e, nodes[e].dist);
                 nodes[e].pred = u;
+            }
+        }
+    }
+}
+
+// Breadth-First Search:
+void Graph::bfs(int v) {
+    for (int v=1; v<=n; v++) nodes[v].visited = false;
+    queue<int> q; // queue of unvisited nodes
+    q.push(v);
+    nodes[v].visited = true;
+    while (!q.empty()) { // while there are still unvisited nodes
+        int u = q.front(); q.pop();
+        cout << u << " "; // show node order
+        for (auto e : nodes[u].adj) {
+            int w = e.dest;
+            if (!nodes[w].visited) {
+                q.push(w);
+                nodes[w].visited = true;
             }
         }
     }
