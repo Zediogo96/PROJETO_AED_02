@@ -1,0 +1,44 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/Anibal/Desktop/AED/PROJETO_AED_02/Graph.h
+MinHeap.h
+C:/Users/Anibal/Desktop/AED/PROJETO_AED_02/MinHeap.h
+vector
+-
+list
+-
+iostream
+-
+
+C:/Users/Anibal/Desktop/AED/PROJETO_AED_02/Menus/Menu.cpp
+Menu.h
+C:/Users/Anibal/Desktop/AED/PROJETO_AED_02/Menus/Menu.h
+
+C:/Users/Anibal/Desktop/AED/PROJETO_AED_02/Menus/Menu.h
+cstdlib
+-
+iostream
+-
+
+C:/Users/Anibal/Desktop/AED/PROJETO_AED_02/MinHeap.h
+vector
+-
+unordered_map
+-
+
+C:/Users/Anibal/Desktop/AED/PROJETO_AED_02/main.cpp
+iostream
+-
+fstream
+-
+Graph.h
+C:/Users/Anibal/Desktop/AED/PROJETO_AED_02/Graph.h
+Menus/Menu.h
+C:/Users/Anibal/Desktop/AED/PROJETO_AED_02/Menus/Menu.h
+
