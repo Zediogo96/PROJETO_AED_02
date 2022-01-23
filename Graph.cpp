@@ -6,6 +6,7 @@
 #include <climits>
 #include <set>
 #include <fstream>
+#include "Utility.h"
 
 #define INFINITE INT_MAX;
 
@@ -14,10 +15,10 @@ Graph::Graph(int num, bool dir) : n(num), hasDir(dir), nodes(num+1) {
 }
 
 // Add edge from source to destination with a certain weight
-void Graph::addEdge(int src, int dest, int weight) {
+void Graph::addEdge(int src, int dest, string line, double weight) {
     if (src<1 || src>n || dest<1 || dest>n) return;
-    nodes[src].adj.push_back({dest, weight});
-    if (!hasDir) nodes[dest].adj.push_back({src, weight});
+    nodes[src].adj.push_back({dest, weight, line});
+    if (!hasDir) nodes[dest].adj.push_back({src, weight, line});
 }
 
 void Graph::readStops() {
@@ -46,16 +47,72 @@ void Graph::readStops() {
         nodes[i].zone = zone;
         nodes[i].latitude = stof(latitude);
         nodes[i].longitude = stof(longitude);
-
-        cout << nodes[i].name << " ";
-        cout << nodes[i].zone << " ";
-        cout << nodes[i].latitude << " ";
-        cout << nodes[i].longitude<< endl;
+        stops.insert({code, i});
 
     }
     file.close();
 }
 
+void Graph::readLines() {
+    ifstream file;
+    string filename = "../Data/lines.csv";
+
+    file.open(filename, ifstream::in);
+
+    string code, alt_code, name;
+
+    getline(file, code);
+
+    while(!file.eof()) {
+
+        getline(file, code, ',');
+        getline(file, alt_code, '-');
+        getline(file, name);
+
+        if(code == "")
+            break;
+
+        readLine(code);
+    }
+
+    file.close();
+    for(auto node : nodes) {
+        cout << node.name << ": ";
+        for (auto edge : node.adj)
+            cout << edge.line << " ";
+        cout << endl;
+    }
+}
+
+void Graph::readLine(string code) {
+    ifstream file;
+
+    for(int i = 0; i < 2; i++) {
+        string filename = "../Data/line_" + code + "_" + to_string(i) + ".csv";
+        file.open(filename, ifstream::in);
+
+        int num_stops;
+        file >> num_stops;
+
+        string source;
+        getline(file, source);
+
+        string dest;
+        for (int i = 0; i < num_stops; i++) {
+            getline(file, dest);
+
+            double lat1 = nodes[stops[source]].latitude;
+            double lon1 = nodes[stops[source]].longitude;
+            double lat2 = nodes[stops[dest]].latitude;
+            double lon2 = nodes[stops[dest]].longitude;
+
+            addEdge(stops[source], stops[dest], code, haversine(lat1,lon1,lat2,lon2));
+            source = dest;
+        }
+
+        file.close();
+    }
+}
 // ----------------------------------------------------------
 // 1) Algoritmo de Dijkstra e caminhos mais curtos
 // ----------------------------------------------------------

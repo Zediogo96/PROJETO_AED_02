@@ -1,0 +1,12 @@
+[
+{
+  "directory": "C:/Users/User/Desktop/Nova pasta/PROJETO_AED_02/build",
+  "command": "C:\\msys64\\mingw64\\bin\\x86_64-w64-mingw32-g++.exe   -g -std=gnu++14 -o CMakeFiles\\PROJETO2.dir\\main.cpp.obj -c \"C:\\Users\\User\\Desktop\\Nova pasta\\PROJETO_AED_02\\main.cpp\"",
+  "file": "C:/Users/User/Desktop/Nova pasta/PROJETO_AED_02/main.cpp"
+},
+{
+  "directory": "C:/Users/User/Desktop/Nova pasta/PROJETO_AED_02/build",
+  "command": "C:\\msys64\\mingw64\\bin\\x86_64-w64-mingw32-g++.exe   -g -std=gnu++14 -o CMakeFiles\\PROJETO2.dir\\Graph.cpp.obj -c \"C:\\Users\\User\\Desktop\\Nova pasta\\PROJETO_AED_02\\Graph.cpp\"",
+  "file": "C:/Users/User/Desktop/Nova pasta/PROJETO_AED_02/Graph.cpp"
+}
+]

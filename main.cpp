@@ -23,11 +23,11 @@ void init(){
 }
 
 int main() {
-    //Graph graph = Graph(countLines("../Data/stops.csv"), true);
-    //graph.readStops();
+    Graph graph = Graph(countLines("../Data/stops.csv"), true);
+    graph.readStops();
+    graph.readLines();
+    graph.printWeights();
 
     init();
-
-
     return 0;
 }

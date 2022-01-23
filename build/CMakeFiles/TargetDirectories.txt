@@ -1,0 +1,3 @@
+C:/Users/User/Desktop/Nova pasta/PROJETO_AED_02/build/CMakeFiles/PROJETO2.dir
+C:/Users/User/Desktop/Nova pasta/PROJETO_AED_02/build/CMakeFiles/edit_cache.dir
+C:/Users/User/Desktop/Nova pasta/PROJETO_AED_02/build/CMakeFiles/rebuild_cache.dir

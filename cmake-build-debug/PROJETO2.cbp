@@ -95,6 +95,9 @@
 		<Unit filename="C:/Users/Anibal/Desktop/AED/PROJETO_AED_02/MinHeap.h">
 			<Option target="PROJETO2"/>
 		</Unit>
+		<Unit filename="C:/Users/Anibal/Desktop/AED/PROJETO_AED_02/Utility.h">
+			<Option target="PROJETO2"/>
+		</Unit>
 		<Unit filename="C:/Users/Anibal/Desktop/AED/PROJETO_AED_02/main.cpp">
 			<Option target="PROJETO2"/>
 		</Unit>
