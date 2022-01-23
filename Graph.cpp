@@ -7,6 +7,8 @@
 #include <set>
 #include <fstream>
 
+#include <math.h>
+
 #define INFINITE INT_MAX;
 
 // Constructor: nr nodes and direction (default: undirected)
@@ -88,7 +90,6 @@ list<int> Graph::dijkstra_path(int a, int b) {
 
     return path;
 }
-
 
 void Graph::dijkstra(int s) {
 
