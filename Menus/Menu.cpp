@@ -8,7 +8,7 @@ void main_menu(){
     char option;
 
     while (true) {
-
+        std::cout << std::endl;
         std::cout << "_____________________________________" << std::endl;
         std::cout << "|            TRANSPORT              |" << std::endl;
         std::cout << "|           MAIN   MENU             |" << std::endl;
@@ -45,7 +45,7 @@ void route_options(){
         std::cout << "|   [2] Less stops                  |" << std::endl;
         std::cout << "|   [3] Fewest line changes         |" << std::endl;
         std::cout << "|   [4] Cheapest route              |" << std::endl;
-        std::cout << "|   [0] Exit                        |" << std::endl;
+        std::cout << "|   [0] Go back                     |" << std::endl;
         std::cout << "|___________________________________|" << std::endl;
 
         std::cout << "Please input your choice: " << std::endl << std::flush;

@@ -4,7 +4,8 @@
 CMakeFiles/PROJETO2.dir/Graph.cpp.obj: \
  ../Graph.cpp \
  ../Graph.h \
- ../MinHeap.h
+ ../MinHeap.h \
+ ../Utility.h
 CMakeFiles/PROJETO2.dir/Menus/Menu.cpp.obj: \
  ../Menus/Menu.cpp \
  ../Menus/Menu.h

@@ -1,7 +1,6 @@
 //
 // Created by zedio on 21/01/2022.
 //
-
 #ifndef PROJETO2_GRAPH_H
 #define PROJETO2_GRAPH_H
 
@@ -65,4 +64,4 @@ public:
 
 };
 
-#endif //PROJETO2_GRAPH_H
+#endif PROJETO2_GRAPH_H
