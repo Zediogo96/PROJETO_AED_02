@@ -2,7 +2,10 @@
 // Created by Anibal on 23/01/2022.
 //
 
+#include <string>
 #include "Menu.h"
+
+using namespace std;
 
 void main_menu(){
     char option;
@@ -73,6 +76,8 @@ void route_options(){
 
 void destination(){
     char option;
+    string startinglocation = "";
+    string destination = "";
 
     while (true) {
 
@@ -82,6 +87,7 @@ void destination(){
         std::cout << "|                                   |" << std::endl;
         std::cout << "|   [1] Starting location           |" << std::endl;
         std::cout << "|   [2] Destination                 |" << std::endl;
+        std::cout << "|   [3] Calculate route             |" << std::endl;
         std::cout << "|   [0] Exit                        |" << std::endl;
         std::cout << "|___________________________________|" << std::endl;
 
@@ -90,7 +96,13 @@ void destination(){
 
         switch ((char) option) {
             case '1':
-                route_options();
+                cin >> startinglocation;
+                break;
+            case '2':
+                cin >> destination;
+                break;
+            case '3':
+                //calculateRoute();
                 break;
             case '0': return;
             default: std::cout << "Invalid Input \n:";

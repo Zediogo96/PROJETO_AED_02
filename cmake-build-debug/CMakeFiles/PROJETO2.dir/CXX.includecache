@@ -6,7 +6,33 @@
 
 #IncludeRegexTransform: 
 
+C:/Users/Anibal/Desktop/AED/PROJETO_AED_02/Graph.cpp
+graph.h
+C:/Users/Anibal/Desktop/AED/PROJETO_AED_02/Graph.h
+climits
+-
+set
+-
+fstream
+-
+Utility.h
+C:/Users/Anibal/Desktop/AED/PROJETO_AED_02/Utility.h
+
+C:/Users/Anibal/Desktop/AED/PROJETO_AED_02/Graph.h
+MinHeap.h
+C:/Users/Anibal/Desktop/AED/PROJETO_AED_02/MinHeap.h
+vector
+-
+list
+-
+map
+-
+iostream
+-
+
 C:/Users/Anibal/Desktop/AED/PROJETO_AED_02/Menus/Menu.cpp
+string
+-
 Menu.h
 C:/Users/Anibal/Desktop/AED/PROJETO_AED_02/Menus/Menu.h
 
@@ -14,5 +40,15 @@ C:/Users/Anibal/Desktop/AED/PROJETO_AED_02/Menus/Menu.h
 cstdlib
 -
 iostream
+-
+
+C:/Users/Anibal/Desktop/AED/PROJETO_AED_02/MinHeap.h
+vector
+-
+unordered_map
+-
+
+C:/Users/Anibal/Desktop/AED/PROJETO_AED_02/Utility.h
+cmath
 -
 

@@ -43,6 +43,7 @@ void Graph::readStops() {
 
         getline(file, longitude);
 
+        nodes[i].code = code;
         nodes[i].name = name;
         nodes[i].zone = zone;
         nodes[i].latitude = stof(latitude);
