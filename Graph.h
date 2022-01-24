@@ -34,7 +34,7 @@ class Graph {
     vector<Node> nodes; // The list of nodes being represented
     map<string, int> stops;
 
-    void dijkstra(int s);
+    void dijkstra(int s, int b);
 
 public:
     // Constructor: nr nodes and direction (default: undirected)
@@ -63,7 +63,7 @@ public:
         }
     }
 
-
+    void bfs(int a);
 };
 
 #endif //PROJETO2_GRAPH_H

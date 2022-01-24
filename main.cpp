@@ -23,6 +23,7 @@ int main() {
     graph.readStops();
     graph.readLines();
 
-    graph.printWeights();
+    graph.dijkstra_path(1,5);
+    cout << graph.dijkstra_distance(1,5) << endl;
     return 0;
 }
