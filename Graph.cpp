@@ -78,6 +78,7 @@ void Graph::readLines() {
     }
 
     file.close();
+
     /*for(auto node : nodes) {
         *//*cout << node.name << ": ";*//*
         for (auto edge : node.adj)
