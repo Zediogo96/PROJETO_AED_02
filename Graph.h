@@ -49,7 +49,7 @@ public:
     void bfs(int v);
 
     // ----- Functions to implement in this class -----
-    int dijkstra_distance(int a, int b);
+    double dijkstra_distance(int a, int b);
 
     list<int> dijkstra_path(int a, int b);
 
@@ -67,6 +67,9 @@ public:
             }
         }
     }
+
+    list<int> bfsPath(int a, int b);
+
 };
 
 #endif //PROJETO2_GRAPH_H

@@ -5,7 +5,8 @@
 
 using namespace std;
 
-int countLines(string filename) {
+int countLines(const string& filename) {
+
     int lines_nr = 0;
     std::string line;
     std::ifstream file(filename);
@@ -25,5 +26,10 @@ int main() {
 
     graph.dijkstra_path(1,5);
     cout << graph.dijkstra_distance(1,5) << endl;
+
+    cout << "----------------------------" << endl;
+
+    graph.bfs(1);
+    graph.bfsPath(1,5);
     return 0;
 }

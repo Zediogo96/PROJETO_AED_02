@@ -1,6 +1,7 @@
 //
 // Created by zedio on 21/01/2022.
 //
+#define INFINITE (INT_MAX / 2)
 
 #include "graph.h"
 #include <climits>
@@ -9,7 +10,7 @@
 #include <queue>
 #include "Utility.h"
 
-#define INFINITE INT_MAX;
+
 
 // Constructor: nr nodes and direction (default: undirected)
 Graph::Graph(int num, bool dir) : n(num), hasDir(dir), nodes(num+1) {
@@ -119,23 +120,48 @@ void Graph::readLine(string code) {
 
 
 // Breatdth-First Search: example implementation
+// Breatdth-First Search: example implementation
 void Graph::bfs(int v) {
-    for (int v=1; v<=n; v++) nodes[v].visited = false;
+
+    for (int i=1; i<=n; i++) {
+        nodes[i].visited = false;
+        nodes[i].pred = -1;
+    }
     queue<int> q; // queue of unvisited nodes
     q.push(v);
     nodes[v].visited = true;
 
     while (!q.empty()) { // while there are still unvisited nodes
         int u = q.front(); q.pop();
-        cout << u << " "; // show node order
-        for (auto e : nodes[u].adj) {
+        /*cout << u << " "; // show node order*/
+        for (const auto& e : nodes[u].adj) {
             int w = e.dest;
             if (!nodes[w].visited) {
+                nodes[w].pred = u;
                 q.push(w);
                 nodes[w].visited = true;
             }
         }
     }
+}
+
+list<int> Graph::bfsPath(int a, int b) {
+
+    list<int> path;
+
+    int v = b;
+
+    while (v != a) {
+        v = nodes[v].pred;
+        path.push_front(v);
+    }
+
+    for (auto elem : path) {
+        cout << nodes[elem].code << " " << nodes[elem].name << endl;
+    }
+    cout << nodes[b].code << " " << nodes[b].name << endl;
+
+    return path;
 }
 
 // ----------------------------------------------------------
@@ -145,10 +171,10 @@ void Graph::bfs(int v) {
 // ..............................
 // a) Distância entre dois nós
 // TODO
-int Graph::dijkstra_distance(int a, int b) {
+double Graph::dijkstra_distance(int a, int b) {
     dijkstra(a, b);
 
-    if (nodes[b].dist == INT_MAX) return -1;
+    if (nodes[b].dist == INFINITE) return -1;
     return nodes[b].dist;
 }
 
@@ -159,14 +185,15 @@ list<int> Graph::dijkstra_path(int a, int b) {
     dijkstra(a, b);
     list<int> path;
 
-    if (nodes[b].dist == INT_MAX) return path;
+    if (nodes[b].dist == INFINITE) return path;
     path.push_back(b);
     int v = b;
     while (v != a) {
-        cout << "!" << nodes[v].code << " " << nodes[v].name << endl;
         v = nodes[v].pred;
         path.push_front(v); // IMPORTANTE FAZER PUSH_FRONT
     }
+
+    for (auto elem : path) cout << nodes[elem].code << " " << nodes[elem].name << endl;
 
     return path;
 }
@@ -179,7 +206,7 @@ void Graph::dijkstra(int s, int b) {
 
     for (int v = 1; v <= n; v++) {
         nodes[v].dist = INFINITE;
-        q.insert(v, nodes[v].dist); // SUPOSTAMENTE ERA INFINITE
+        q.insert(v, INFINITE); // SUPOSTAMENTE ERA INFINITE
         nodes[v].visited = false;
     }
     nodes[s].dist = 0; // SOURCE -> where we start the algorithm
@@ -188,16 +215,13 @@ void Graph::dijkstra(int s, int b) {
 
     while (q.getSize() > 0) {
         int u = q.removeMin();
-
         nodes[u].visited = true;
-
         if (u == b) return;
 
-        for (auto elem : nodes[u].adj) {
+        for (const auto& elem : nodes[u].adj) {
 
             int e = elem.dest;
-
-            int w = elem.weight;
+            double w = elem.weight;
 
             if (!nodes[e].visited & (nodes[u].dist + w < nodes[e].dist)) {
                 nodes[e].dist = nodes[u].dist + w;
