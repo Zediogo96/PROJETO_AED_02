@@ -19,15 +19,16 @@ int countLines(string filename) {
 }
 
 void init(){
+    Graph graph = Graph(countLines("../Data/stops.csv"), true);
+    graph.readStops();
+    graph.readLines();
+    graph.dijkstra_path(1,5);
+    cout << graph.dijkstra_distance(1,5) << endl;
+
     main_menu();
 }
 
 int main() {
-    Graph graph = Graph(countLines("../Data/stops.csv"), true);
-    graph.readStops();
-    graph.readLines();
-    graph.printWeights();
-
     init();
     return 0;
 }

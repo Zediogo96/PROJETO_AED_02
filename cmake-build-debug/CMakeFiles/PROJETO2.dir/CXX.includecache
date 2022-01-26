@@ -15,6 +15,8 @@ set
 -
 fstream
 -
+queue
+-
 Utility.h
 C:/Users/Anibal/Desktop/AED/PROJETO_AED_02/Utility.h
 
@@ -27,14 +29,10 @@ list
 -
 map
 -
+queue
+-
 iostream
 -
-
-C:/Users/Anibal/Desktop/AED/PROJETO_AED_02/Menus/Menu.cpp
-string
--
-Menu.h
-C:/Users/Anibal/Desktop/AED/PROJETO_AED_02/Menus/Menu.h
 
 C:/Users/Anibal/Desktop/AED/PROJETO_AED_02/Menus/Menu.h
 cstdlib
@@ -51,4 +49,16 @@ unordered_map
 C:/Users/Anibal/Desktop/AED/PROJETO_AED_02/Utility.h
 cmath
 -
+algorithm
+-
+
+C:/Users/Anibal/Desktop/AED/PROJETO_AED_02/main.cpp
+iostream
+-
+fstream
+-
+Graph.h
+C:/Users/Anibal/Desktop/AED/PROJETO_AED_02/Graph.h
+Menus/Menu.h
+C:/Users/Anibal/Desktop/AED/PROJETO_AED_02/Menus/Menu.h
 

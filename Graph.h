@@ -8,6 +8,7 @@
 #include <vector>
 #include <list>
 #include <map>
+#include <queue>
 #include <iostream>
 
 using namespace std;
@@ -33,7 +34,7 @@ class Graph {
     vector<Node> nodes; // The list of nodes being represented
     map<string, int> stops;
 
-    void dijkstra(int s);
+    void dijkstra(int s, int b);
 
 public:
     // Constructor: nr nodes and direction (default: undirected)
@@ -42,25 +43,19 @@ public:
     // Add edge from source to destination with a certain weight
     void addEdge(int src, int dest, string line, double weight = 1.0F);
 
+
+    // Algorithms
+    void bfs(int v);
+
     // ----- Functions to implement in this class -----
     int dijkstra_distance(int a, int b);
+
     list<int> dijkstra_path(int a, int b);
 
 
     void readStops();
     void readLines();
     void readLine(string code);
-
-
-    /** TO TEST THE WEIGHTS **/
-    void printWeights() {
-        for (int i = 1; i <= n; i++) {
-            for (const auto& elem : nodes[i].adj) {
-                cout << elem.weight << " ";
-            }
-        }
-    }
-
 
 };
 

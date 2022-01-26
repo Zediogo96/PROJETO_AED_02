@@ -6,6 +6,7 @@
 #include <climits>
 #include <set>
 #include <fstream>
+#include <queue>
 #include "Utility.h"
 
 #define INFINITE INT_MAX;
@@ -70,19 +71,20 @@ void Graph::readLines() {
         getline(file, alt_code, '-');
         getline(file, name);
 
-        if(code == "")
+        if(code.empty())
             break;
 
         readLine(code);
     }
 
     file.close();
-    for(auto node : nodes) {
-        cout << node.name << ": ";
+
+    /*for(auto node : nodes) {
+        *//*cout << node.name << ": ";*//*
         for (auto edge : node.adj)
-            cout << edge.line << " ";
+            *//*cout << edge.line << " ";*//*
         cout << endl;
-    }
+    }*/
 }
 
 void Graph::readLine(string code) {
@@ -114,6 +116,28 @@ void Graph::readLine(string code) {
         file.close();
     }
 }
+
+
+// Breatdth-First Search: example implementation
+void Graph::bfs(int v) {
+    for (int v=1; v<=n; v++) nodes[v].visited = false;
+    queue<int> q; // queue of unvisited nodes
+    q.push(v);
+    nodes[v].visited = true;
+
+    while (!q.empty()) { // while there are still unvisited nodes
+        int u = q.front(); q.pop();
+        cout << u << " "; // show node order
+        for (auto e : nodes[u].adj) {
+            int w = e.dest;
+            if (!nodes[w].visited) {
+                q.push(w);
+                nodes[w].visited = true;
+            }
+        }
+    }
+}
+
 // ----------------------------------------------------------
 // 1) Algoritmo de Dijkstra e caminhos mais curtos
 // ----------------------------------------------------------
@@ -122,7 +146,7 @@ void Graph::readLine(string code) {
 // a) Distância entre dois nós
 // TODO
 int Graph::dijkstra_distance(int a, int b) {
-    dijkstra(a);
+    dijkstra(a, b);
 
     if (nodes[b].dist == INT_MAX) return -1;
     return nodes[b].dist;
@@ -132,14 +156,14 @@ int Graph::dijkstra_distance(int a, int b) {
 // b) Caminho mais curto entre dois nós
 // TODO
 list<int> Graph::dijkstra_path(int a, int b) {
-    dijkstra(a);
+    dijkstra(a, b);
     list<int> path;
 
     if (nodes[b].dist == INT_MAX) return path;
     path.push_back(b);
     int v = b;
     while (v != a) {
-        cout << "!" << v << endl;
+        cout << "!" << nodes[v].code << " " << nodes[v].name << endl;
         v = nodes[v].pred;
         path.push_front(v); // IMPORTANTE FAZER PUSH_FRONT
     }
@@ -147,18 +171,15 @@ list<int> Graph::dijkstra_path(int a, int b) {
     return path;
 }
 
-
-void Graph::dijkstra(int s) {
+void Graph::dijkstra(int s, int b) {
 
     // FIRST -> KEY 2ND -> DISTANCE
     MinHeap<int,int> q(n, -1); // PRIORITY HEAP
-    set<pair<int,int>> q1; // IDEIA É QUE .BEGIN() DE SET É SEMPRE O MENOR (PQ É ORDENADO)
     // UTILIZAR VALOR NO PRIMEIRO PARA ORDENAR A ARVORE
 
     for (int v = 1; v <= n; v++) {
         nodes[v].dist = INFINITE;
         q.insert(v, nodes[v].dist); // SUPOSTAMENTE ERA INFINITE
-        q1.insert({nodes[v].dist, v});
         nodes[v].visited = false;
     }
     nodes[s].dist = 0; // SOURCE -> where we start the algorithm
@@ -167,15 +188,18 @@ void Graph::dijkstra(int s) {
 
     while (q.getSize() > 0) {
         int u = q.removeMin();
-        cout << "Node " << u << "with distance = " << nodes[u].dist << endl;
+
         nodes[u].visited = true;
+
+        if (u == b) return;
 
         for (auto elem : nodes[u].adj) {
 
             int e = elem.dest;
+
             int w = elem.weight;
 
-            if (!nodes[e].visited & (nodes[u].dist + w < nodes[e].dist)) {
+            if (!nodes[e].visited && (nodes[u].dist + w < nodes[e].dist)) {
                 nodes[e].dist = nodes[u].dist + w;
                 q.decreaseKey(e, nodes[e].dist);
                 nodes[e].pred = u;
