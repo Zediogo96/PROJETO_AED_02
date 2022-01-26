@@ -1,7 +1,6 @@
 //
 // Created by zedio on 21/01/2022.
 //
-
 #ifndef PROJETO2_GRAPH_H
 #define PROJETO2_GRAPH_H
 
@@ -58,7 +57,6 @@ public:
     void readLines();
     void readLine(string code);
 
-
     /** TO TEST THE WEIGHTS **/
     void printWeights() {
         for (int i = 1; i <= n; i++) {
@@ -69,7 +67,6 @@ public:
     }
 
     list<int> bfsPath(int a, int b);
-
 };
 
-#endif //PROJETO2_GRAPH_H
+#endif PROJETO2_GRAPH_H

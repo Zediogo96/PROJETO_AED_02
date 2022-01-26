@@ -223,7 +223,7 @@ void Graph::dijkstra(int s, int b) {
             int e = elem.dest;
             double w = elem.weight;
 
-            if (!nodes[e].visited & (nodes[u].dist + w < nodes[e].dist)) {
+            if (!nodes[e].visited && (nodes[u].dist + w < nodes[e].dist)) {
                 nodes[e].dist = nodes[u].dist + w;
                 q.decreaseKey(e, nodes[e].dist);
                 nodes[e].pred = u;

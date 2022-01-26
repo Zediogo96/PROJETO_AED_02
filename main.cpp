@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include "Graph.h"
-#include <math.h>
+#include "Menus/Menu.h"
 
 using namespace std;
 
@@ -19,11 +19,10 @@ int countLines(const string& filename) {
     return lines_nr;
 }
 
-int main() {
+void init(){
     Graph graph = Graph(countLines("../Data/stops.csv"), true);
     graph.readStops();
     graph.readLines();
-
     graph.dijkstra_path(1,5);
     cout << graph.dijkstra_distance(1,5) << endl;
 
@@ -31,5 +30,11 @@ int main() {
 
     graph.bfs(1);
     graph.bfsPath(1,5);
+
+    main_menu();
+}
+
+int main() {
+    init();
     return 0;
 }
