@@ -2,6 +2,7 @@
 #include <fstream>
 #include "Graph.h"
 #include "Menus/Menu.h"
+#include <math.h>
 
 using namespace std;
 
@@ -23,11 +24,11 @@ void init(){
 }
 
 int main() {
-    //Graph graph = Graph(countLines("../Data/stops.csv"), true);
-    //graph.readStops();
+    Graph graph = Graph(countLines("../Data/stops.csv"), true);
+    graph.readStops();
+    graph.readLines();
 
-    init();
+    graph.dijkstra_path(1,5);
+    cout << graph.dijkstra_distance(1,5) << endl;
 
-
-    return 0;
 }
