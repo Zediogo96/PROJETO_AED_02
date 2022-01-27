@@ -63,6 +63,10 @@ public:
     int checkIfNameExists(string &s);
 
     vector<int> findNearNodes(double lat, double lon, int dist);
+
+    int checkIfCodeExists(string &s);
+
+    vector<Node> getNodes() { return nodes; }
 };
 
 #endif //PROJETO2_GRAPH_H

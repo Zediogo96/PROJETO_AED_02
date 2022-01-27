@@ -84,6 +84,15 @@ int Graph::checkIfNameExists(string& s){
     return -1;
 }
 
+int Graph::checkIfCodeExists(string& s) {
+    toUpperCase(s);
+
+    for (int i = 1; i <= n; i++) {
+        if (nodes[i].code == s) return i;
+    }
+    return -1;
+}
+
 void Graph::readLine(const string& code) {
     ifstream file;
 
@@ -244,12 +253,13 @@ void Graph::dijkstra(int s, int b) {
 }
 
 vector<int> Graph::findNearNodes(double lat, double lon, int dist) {
+
     vector<int> near_nodes;
 
     for(int i = 1; i <= n; i++)
-        if(abs(haversine(nodes[i].latitude, nodes[i].longitude, lat, lon)) <= dist)
+        if(abs(haversine(nodes[i].latitude, nodes[i].longitude, lat, lon)) <= dist) {
             near_nodes.push_back(i);
-
+        }
     return near_nodes;
 
 }
