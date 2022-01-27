@@ -61,6 +61,8 @@ public:
     void readLine(const string& code);
 
     int checkIfNameExists(string &s);
+
+    vector<int> findNearNodes(double lat, double lon, int dist);
 };
 
 #endif //PROJETO2_GRAPH_H

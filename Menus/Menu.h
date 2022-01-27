@@ -9,7 +9,7 @@
 #include "../Graph.h"
 
 
-void main_menu(Graph graph); //!< Start menu
+void main_menu(const Graph& graph); //!< Start menu
 void route_options(Graph graph);
 void destination();
 

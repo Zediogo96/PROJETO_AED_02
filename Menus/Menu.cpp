@@ -8,12 +8,14 @@
 
 using namespace std;
 
-void main_menu(Graph graph){
+void main_menu(const Graph& graph){
+
     char option;
     string startinglocation;
     string destination;
 
     while (true) {
+
         std::cout << std::endl;
         std::cout << "_____________________________________" << std::endl;
         std::cout << "|            TRANSPORT              |" << std::endl;
@@ -67,6 +69,8 @@ void route_options(Graph graph){
         std::cout << "Please input your choice: " << std::endl << std::flush;
         std::cin >> option;
 
+        std::cin.ignore();
+
         switch ((char) option) {
             case '1':
 
@@ -74,15 +78,15 @@ void route_options(Graph graph){
             case '2':
 
                 do {
-                    cout << "From which stop do you want calculate a route? ";
-                    cin >> source;
+                    cout << "From which stop do you want calculate a route? " << endl;
+                    std::getline(std::cin, source);
                     s = graph.checkIfNameExists(source);
                 }
                 while (graph.checkIfNameExists(source) == -1);
 
                 do {
-                    cout << "Where do you want to go? ";
-                    cin >> dest;
+                    cout << "Where do you want to go? " << endl;
+                    std::getline(std::cin, dest);
                     d = graph.checkIfNameExists(dest);
                 }
                 while (graph.checkIfNameExists(dest) == -1);
