@@ -1,23 +1,20 @@
 //
 // Created by zedio on 21/01/2022.
 //
-#define INFINITE (INT_MAX / 2)
+#define INFINITE (std::numeric_limits<float>::max() / 2)
 
-#include "graph.h"
-#include <climits>
-#include <set>
+#include "Graph.h"
 #include <fstream>
 #include <queue>
+#include <stack>
 #include "Utility.h"
 
 
-
 // Constructor: nr nodes and direction (default: undirected)
-Graph::Graph(int num, bool dir) : n(num), hasDir(dir), nodes(num+1) {
-}
+Graph::Graph(int num, bool dir) : n(num), hasDir(dir), nodes(num+1) {}
 
 // Add edge from source to destination with a certain weight
-void Graph::addEdge(int src, int dest, string line, double weight) {
+void Graph::addEdge(int src, int dest, const string& line, double weight) {
     if (src<1 || src>n || dest<1 || dest>n) return;
     nodes[src].adj.push_back({dest, weight, line});
     if (!hasDir) nodes[dest].adj.push_back({src, weight, line});
@@ -36,13 +33,9 @@ void Graph::readStops() {
     for (int i = 1; i <= n; i++) {
 
         getline(file, code, ',');
-
         getline(file, name, ',') ;
-
         getline(file, zone, ',') ;
-
         getline(file, latitude, ',');
-
         getline(file, longitude);
 
         nodes[i].code = code;
@@ -79,16 +72,17 @@ void Graph::readLines() {
     }
 
     file.close();
-
-    /*for(auto node : nodes) {
-        *//*cout << node.name << ": ";*//*
-        for (auto edge : node.adj)
-            *//*cout << edge.line << " ";*//*
-        cout << endl;
-    }*/
 }
 
-void Graph::readLine(string code) {
+int Graph::checkIfNameExists(string& s){
+
+    for (int i = 1; i <= n; i++) {
+        if (nodes[i].name == s) return i;
+    }
+    return -1;
+}
+
+void Graph::readLine(const string& code) {
     ifstream file;
 
     for(int i = 0; i < 2; i++) {
@@ -102,7 +96,7 @@ void Graph::readLine(string code) {
         getline(file, source);
 
         string dest;
-        for (int i = 0; i < num_stops; i++) {
+        for (int j = 0; j < num_stops; j++) {
             getline(file, dest);
 
             double lat1 = nodes[stops[source]].latitude;
@@ -113,55 +107,69 @@ void Graph::readLine(string code) {
             addEdge(stops[source], stops[dest], code, haversine(lat1,lon1,lat2,lon2));
             source = dest;
         }
-
         file.close();
     }
 }
 
+/**
+ * This is simply the breadth-first traversal of a graph.
+ * So, the complexity will be O(V+E), where V is the number of vertices and E is the number of edges.
+ * @param v
+ * @param dest
+ * @return boolean
+ */
+bool Graph::bfs(int v, int dest) {
 
-// Breatdth-First Search: example implementation
-// Breatdth-First Search: example implementation
-void Graph::bfs(int v) {
-
-    for (int i=1; i<=n; i++) {
+    for(int i = 1; i <= n; i++) {
         nodes[i].visited = false;
         nodes[i].pred = -1;
     }
-    queue<int> q; // queue of unvisited nodes
+
+    queue<int> q; // queue of unvisited nodes with distance to v
+
     q.push(v);
     nodes[v].visited = true;
 
     while (!q.empty()) { // while there are still unvisited nodes
-        int u = q.front(); q.pop();
-        /*cout << u << " "; // show node order*/
-        for (const auto& e : nodes[u].adj) {
+        int tmp = q.front(); q.pop();
+
+        for (const auto& e: nodes[tmp].adj) {
             int w = e.dest;
             if (!nodes[w].visited) {
-                nodes[w].pred = u;
                 q.push(w);
                 nodes[w].visited = true;
+                nodes[w].pred = tmp;
+
+                if (tmp == dest) return true;
             }
         }
     }
+    return false;
+
 }
 
-list<int> Graph::bfsPath(int a, int b) {
+void Graph::bfsPath(int source, int dest) {
 
-    list<int> path;
+    bfs(source, dest);
 
-    int v = b;
-
-    while (v != a) {
-        v = nodes[v].pred;
-        path.push_front(v);
+    if (!bfs(source, dest)) {
+        cout << "Destination is not reachable from this source \n";
+        return;
     }
 
-    for (auto elem : path) {
-        cout << nodes[elem].code << " " << nodes[elem].name << endl;
-    }
-    cout << nodes[b].code << " " << nodes[b].name << endl;
+    stack<int> q;
 
-    return path;
+    while (nodes[dest].pred != -1) {
+        q.push(dest);
+        dest = nodes[dest].pred;
+    }
+
+    cout << "[" << nodes[source].code << ": " << nodes[source].name << "]" << endl;
+
+    while(!q.empty()) {
+        cout << " -> " << "[" <<  nodes[q.top()].code << ": " << nodes[q.top()].name << "]" << endl;
+        q.pop();
+    }
 }
 
 // ----------------------------------------------------------
@@ -169,7 +177,7 @@ list<int> Graph::bfsPath(int a, int b) {
 // ----------------------------------------------------------
 
 // ..............................
-// a) Distância entre dois nós
+// a) Dist�ncia entre dois n�s
 // TODO
 double Graph::dijkstra_distance(int a, int b) {
     dijkstra(a, b);
@@ -179,7 +187,7 @@ double Graph::dijkstra_distance(int a, int b) {
 }
 
 // ..............................
-// b) Caminho mais curto entre dois nós
+// b) Caminho mais curto entre dois n�s
 // TODO
 list<int> Graph::dijkstra_path(int a, int b) {
     dijkstra(a, b);
@@ -193,7 +201,7 @@ list<int> Graph::dijkstra_path(int a, int b) {
         path.push_front(v); // IMPORTANTE FAZER PUSH_FRONT
     }
 
-    for (auto elem : path) cout << nodes[elem].code << " " << nodes[elem].name << endl;
+    for (auto elem : path) cout << "[" << nodes[elem].code << ", " << nodes[elem].name << "] -> ";
 
     return path;
 }
@@ -201,13 +209,14 @@ list<int> Graph::dijkstra_path(int a, int b) {
 void Graph::dijkstra(int s, int b) {
 
     // FIRST -> KEY 2ND -> DISTANCE
-    MinHeap<int,int> q(n, -1); // PRIORITY HEAP
+    MinHeap<int,double> q(n, -1); // PRIORITY HEAP
     // UTILIZAR VALOR NO PRIMEIRO PARA ORDENAR A ARVORE
 
     for (int v = 1; v <= n; v++) {
         nodes[v].dist = INFINITE;
-        q.insert(v, INFINITE); // SUPOSTAMENTE ERA INFINITE
+        q.insert(v, INFINITE);
         nodes[v].visited = false;
+        nodes[v].pred = -1;
     }
     nodes[s].dist = 0; // SOURCE -> where we start the algorithm
     q.decreaseKey(s, 0);

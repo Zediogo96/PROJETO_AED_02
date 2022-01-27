@@ -14,6 +14,7 @@
 using namespace std;
 
 class Graph {
+    
     struct Edge {
         int dest;   // Destination node
         double weight; // An integer weight
@@ -41,11 +42,13 @@ public:
     Graph(int nodes, bool dir = false);
 
     // Add edge from source to destination with a certain weight
-    void addEdge(int src, int dest, string line, double weight = 1.0F);
+    void addEdge(int src, int dest, const string& line, double weight = 1.0F);
 
 
     // Algorithms
-    void bfs(int v);
+    bool bfs(int v, int v1);
+
+    void bfsPath(int a, int b);
 
     // ----- Functions to implement in this class -----
     double dijkstra_distance(int a, int b);
@@ -55,18 +58,9 @@ public:
 
     void readStops();
     void readLines();
-    void readLine(string code);
+    void readLine(const string& code);
 
-    /** TO TEST THE WEIGHTS **/
-    void printWeights() {
-        for (int i = 1; i <= n; i++) {
-            for (const auto& elem : nodes[i].adj) {
-                cout << elem.weight << " ";
-            }
-        }
-    }
-
-    list<int> bfsPath(int a, int b);
+    int checkIfNameExists(string &s);
 };
 
-#endif PROJETO2_GRAPH_H
+#endif //PROJETO2_GRAPH_H

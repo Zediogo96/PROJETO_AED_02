@@ -23,15 +23,14 @@ void init(){
     Graph graph = Graph(countLines("../Data/stops.csv"), true);
     graph.readStops();
     graph.readLines();
-    graph.dijkstra_path(1,5);
-    cout << graph.dijkstra_distance(1,5) << endl;
+    graph.dijkstra_path(1,1249);
 
     cout << "----------------------------" << endl;
 
-    graph.bfs(1);
-    graph.bfsPath(1,5);
+    graph.bfs(1, 1249);
+    graph.bfsPath(1,1249);
 
-    main_menu();
+    main_menu(graph);
 }
 
 int main() {
