@@ -26,16 +26,13 @@ void init(){
     graph.readLines();
 
 
-    /*graph.dijkstra_path(1,1249);
+    /*graph.dijkstra_path(100,340);
 
     cout << "----------------------------" << endl;
 
-    graph.bfs(1, 1249);
-    graph.bfsPath(1,1249);
+    graph.bfsPath(100,340);*/
 
-
-
-    graph.findNearNodes(41.1488,-8.610426, 100);*/
+    /* graph.findNearNodes(41.1488,-8.610426, 100);*/
 
     main_menu(graph);
 

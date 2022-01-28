@@ -100,14 +100,14 @@ void Graph::readLine(const string& code) {
         string filename = "../Data/line_" + code + "_" + to_string(i) + ".csv";
         file.open(filename, ifstream::in);
 
-        int num_stops;
-        file >> num_stops;
+        string num_stops;
+        getline(file, num_stops);
 
         string source;
         getline(file, source);
 
         string dest;
-        for (int j = 0; j < num_stops; j++) {
+        for (int j = 0; j < stoi(num_stops); j++) {
             getline(file, dest);
 
             double lat1 = nodes[stops[source]].latitude;
@@ -212,7 +212,7 @@ list<int> Graph::dijkstra_path(int a, int b) {
         path.push_front(v); // IMPORTANTE FAZER PUSH_FRONT
     }
 
-    for (auto elem : path) cout << "[" << nodes[elem].code << ", " << nodes[elem].name << "] -> ";
+    for (auto elem : path) cout << "[" << nodes[elem].code << ", " << nodes[elem].name << "]" << endl;
 
     return path;
 }

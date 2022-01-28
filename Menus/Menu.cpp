@@ -67,7 +67,7 @@ void shortestStopsMenu(Graph graph){
     while (true) {
 
         std::cout << "_____________________________________" << std::endl;
-        std::cout << "|           Route Options           |" << std::endl;
+        std::cout << "|        Fewer Stops Option         |" << std::endl;
         std::cout << "|___________________________________|" << std::endl;
         std::cout << "|   [1] By Location                 |" << std::endl;
         std::cout << "|   [2] By Code of Stops            |" << std::endl;
@@ -129,13 +129,13 @@ void lessDistanceMenu(Graph graph) {
                 test = getInputCoordinates(graph);
                 select_Stop_Menu(graph,test, s);
                 d = getDestinationCode(graph);
-                graph.bfsPath(s, d);
+                graph.dijkstra_path(s,d);
 
                 break;
             case '2':
 
                 input = getInputCodes(graph);
-                graph.bfsPath(input.first, input.second);
+                graph.dijkstra_path(input.first, input.second);
 
                 break;
             case '0': return;
