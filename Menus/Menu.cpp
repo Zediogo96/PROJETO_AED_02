@@ -12,7 +12,9 @@ using namespace std;
 pair<int, int> getInputCodes(Graph graph);
 int getDestinationCode(Graph graph);
 vector<int> getInputCoordinates(Graph graph);
+void shortestStopsMenu(Graph graph);
 void select_Stop_Menu(Graph graph, const vector<int>& nearbyStops, int & source);
+void lessDistanceMenu(Graph graph);
 
 void main_menu(const Graph& graph){
 
@@ -24,13 +26,14 @@ void main_menu(const Graph& graph){
 
         std::cout << std::endl;
         std::cout << "_____________________________________" << std::endl;
-        std::cout << "|             TRANSPORT             |" << std::endl;
+        std::cout << "|                STCP               |" << std::endl;
         std::cout << "|             MAIN MENU             |" << std::endl;
         std::cout << "|___________________________________|" << std::endl;
+        std::cout << "|   Select your desired route:      |" << std::endl;
         std::cout << "|                                   |" << std::endl;
-        std::cout << "|   [1] Starting location           |" << std::endl;
-        std::cout << "|   [2] Destination                 |" << std::endl;
-        std::cout << "|   [3] Route                       |" << std::endl;
+        std::cout << "|   [1] Fewer Number of Stops       |" << std::endl;
+        std::cout << "|   [2] Less Distance               |" << std::endl;
+        std::cout << "|                                   |" << std::endl;
         std::cout << "|   [0] Exit                        |" << std::endl;
         std::cout << "|___________________________________|" << std::endl;
 
@@ -40,13 +43,10 @@ void main_menu(const Graph& graph){
 
         switch ((char) option) {
             case '1':
-                cin >> startinglocation;
+                shortestStopsMenu(graph);
                 break;
             case '2':
-                cin >> destination;
-                break;
-            case '3':
-                route_options(graph);
+                lessDistanceMenu(graph);
                 break;
             case '0': return;
             default: std::cout << "Invalid Input \n:";
@@ -55,7 +55,7 @@ void main_menu(const Graph& graph){
     }
 }
 
-void route_options(Graph graph){
+void shortestStopsMenu(Graph graph){
     int s, d;
 
     char option;
@@ -69,10 +69,8 @@ void route_options(Graph graph){
         std::cout << "_____________________________________" << std::endl;
         std::cout << "|           Route Options           |" << std::endl;
         std::cout << "|___________________________________|" << std::endl;
-        std::cout << "|   [1] Shortest distance           |" << std::endl;
-        std::cout << "|   [2] Less stops                  |" << std::endl;
-        std::cout << "|   [3] Test coordinates            |" << std::endl;
-        std::cout << "|   [4] Cheapest route              |" << std::endl;
+        std::cout << "|   [1] By Location                 |" << std::endl;
+        std::cout << "|   [2] By Code of Stops            |" << std::endl;
         std::cout << "|   [0] Go back                     |" << std::endl;
         std::cout << "|___________________________________|" << std::endl;
 
@@ -84,22 +82,62 @@ void route_options(Graph graph){
         switch ((char) option) {
             case '1':
 
+                test = getInputCoordinates(graph);
+                select_Stop_Menu(graph,test, s);
+                d = getDestinationCode(graph);
+                graph.bfsPath(s, d);
+
                 break;
             case '2':
                 input = getInputCodes(graph);
                 graph.bfsPath(input.first, input.second);
                 break;
-            case '3':
+            case '0': return;
+            default: std::cout << "Invalid Input \n:";
+                system("pause");
+        }
+    }
+}
 
-                 test = getInputCoordinates(graph);
+void lessDistanceMenu(Graph graph) {
+    int s, d;
 
+    char option;
+
+    vector<int> test;
+
+    pair<int,int> input;
+
+    while (true) {
+
+        std::cout << "_____________________________________" << std::endl;
+        std::cout << "|           Route Options           |" << std::endl;
+        std::cout << "|___________________________________|" << std::endl;
+        std::cout << "|   [1] By Location                 |" << std::endl;
+        std::cout << "|   [2] By Code of Stops            |" << std::endl;
+        std::cout << "|   [0] Go back                     |" << std::endl;
+        std::cout << "|___________________________________|" << std::endl;
+
+        std::cout << "Please input your choice: " << std::endl << std::flush;
+        std::cin >> option;
+
+        std::cin.ignore();
+
+        switch ((char) option) {
+            case '1':
+
+                test = getInputCoordinates(graph);
                 select_Stop_Menu(graph,test, s);
                 d = getDestinationCode(graph);
-
                 graph.bfsPath(s, d);
 
                 break;
+            case '2':
 
+                input = getInputCodes(graph);
+                graph.bfsPath(input.first, input.second);
+
+                break;
             case '0': return;
             default: std::cout << "Invalid Input \n:";
                 system("pause");
