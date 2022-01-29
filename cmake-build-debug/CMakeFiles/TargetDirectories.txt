@@ -1,0 +1,3 @@
+C:/Users/zedio/Documents/Documentos/FEUP/2ANO/AED/PROJETO_2/cmake-build-debug/CMakeFiles/PROJETO2.dir
+C:/Users/zedio/Documents/Documentos/FEUP/2ANO/AED/PROJETO_2/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/zedio/Documents/Documentos/FEUP/2ANO/AED/PROJETO_2/cmake-build-debug/CMakeFiles/rebuild_cache.dir

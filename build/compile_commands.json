@@ -1,0 +1,17 @@
+[
+{
+  "directory": "C:/Users/User/Desktop/PROJETO_AED_02-menu/build",
+  "command": "C:\\msys64\\mingw64\\bin\\x86_64-w64-mingw32-g++.exe   -g -std=gnu++14 -o CMakeFiles\\PROJETO2.dir\\main.cpp.obj -c C:\\Users\\User\\Desktop\\PROJETO_AED_02-menu\\main.cpp",
+  "file": "C:/Users/User/Desktop/PROJETO_AED_02-menu/main.cpp"
+},
+{
+  "directory": "C:/Users/User/Desktop/PROJETO_AED_02-menu/build",
+  "command": "C:\\msys64\\mingw64\\bin\\x86_64-w64-mingw32-g++.exe   -g -std=gnu++14 -o CMakeFiles\\PROJETO2.dir\\Graph.cpp.obj -c C:\\Users\\User\\Desktop\\PROJETO_AED_02-menu\\Graph.cpp",
+  "file": "C:/Users/User/Desktop/PROJETO_AED_02-menu/Graph.cpp"
+},
+{
+  "directory": "C:/Users/User/Desktop/PROJETO_AED_02-menu/build",
+  "command": "C:\\msys64\\mingw64\\bin\\x86_64-w64-mingw32-g++.exe   -g -std=gnu++14 -o CMakeFiles\\PROJETO2.dir\\Menus\\Menu.cpp.obj -c C:\\Users\\User\\Desktop\\PROJETO_AED_02-menu\\Menus\\Menu.cpp",
+  "file": "C:/Users/User/Desktop/PROJETO_AED_02-menu/Menus/Menu.cpp"
+}
+]
