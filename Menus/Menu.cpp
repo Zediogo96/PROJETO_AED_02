@@ -274,9 +274,9 @@ void select_Stop_Menu(Graph graph, const vector<int>& nearbyStops, int & source)
 
         int k = 1;
         for (auto i : nearbyStops) {
+            string s = graph.getNodes()[i].code + "   " + graph.getNodes()[i].name;
 
-            std::cout  << "|    [" << k << "] " << setw(3) << left << graph.getNodes()[i].code << " "
-                       << setw(30) << left << graph.getNodes()[i].name << "|" << std::endl;
+            std::cout << "|    [" << k << "] " << s << setw(37 - s.length() - to_string(k).length())<< "|" << std::endl;
             k++;
         }
         std::cout << "|                                           |" << std::endl;
