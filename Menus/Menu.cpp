@@ -272,6 +272,7 @@ bool select_Stop_Menu(Graph graph, const vector<int>& nearbyStops, int & source)
         cout<<setfill(' ');
 
         int k = 1;
+        if (nearbyStops.empty()) cout << "| There are no stops around your location!  |" << endl;
         for (auto i : nearbyStops) {
             string s = graph.getNodes()[i].code + "   " + graph.getNodes()[i].name;
 
