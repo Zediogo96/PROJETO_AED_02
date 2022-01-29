@@ -1,7 +1,6 @@
 //
 // Created by zedio on 21/01/2022.
 //
-
 #ifndef PROJETO2_GRAPH_H
 #define PROJETO2_GRAPH_H
 
@@ -15,10 +14,12 @@
 using namespace std;
 
 class Graph {
+    
     struct Edge {
         int dest;   // Destination node
         double weight; // An integer weight
         string line; // Bus line
+        string zone;
     };
 
     struct Node {
@@ -35,38 +36,40 @@ class Graph {
     vector<Node> nodes; // The list of nodes being represented
     map<string, int> stops;
 
-    void dijkstra(int s, int b);
-
 public:
     // Constructor: nr nodes and direction (default: undirected)
     Graph(int nodes, bool dir = false);
 
     // Add edge from source to destination with a certain weight
-    void addEdge(int src, int dest, string line, double weight = 1.0F);
+    void addEdge(int src, int dest, const string& line, double weight = 1.0F);
 
 
     // Algorithms
-    void bfs(int v);
+    bool bfs(int v, int v1);
+
+    void bfsPath(int a, int b);
 
     // ----- Functions to implement in this class -----
-    int dijkstra_distance(int a, int b);
+    double dijkstra_distance(int a, int b);
 
     list<int> dijkstra_path(int a, int b);
 
 
     void readStops();
     void readLines();
-    void readLine(string code);
+    void readLine(const string& code);
 
+    int checkIfNameExists(string &s);
 
-    /** TO TEST THE WEIGHTS **/
-    void printWeights() {
-        for (int i = 1; i <= n; i++) {
-            for (const auto& elem : nodes[i].adj) {
-                cout << elem.weight << " ";
-            }
-        }
-    }
+    vector<int> findNearNodes(double lat, double lon, int dist);
+
+    int checkIfCodeExists(string &s);
+
+    vector<Node> getNodes() { return nodes; }
+
+    void dijkstraZones(int src);
+
+    void dijkstra(int s, int b);
 };
 
 #endif //PROJETO2_GRAPH_H

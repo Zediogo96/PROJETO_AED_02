@@ -6,9 +6,11 @@
 #define PROJETO2_MENU_H
 #include <cstdlib>
 #include <iostream>
+#include "../Graph.h"
 
-void main_menu(); //!< Start menu
-void route_options();
+
+void main_menu(const Graph& graph); //!< Start menu
+void route_options(Graph graph);
 void destination();
 
 

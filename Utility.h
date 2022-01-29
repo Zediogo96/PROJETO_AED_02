@@ -41,5 +41,20 @@ void toUpperCase(string &str) {
     transform(str.begin(), str.end(), str.begin(), [](unsigned char c) {return toupper(c);});
 }
 
+char* removeAccented( char* str ) {
+    char *p = str;
+    while ( (*p)!=0 ) {
+        const char*
+
+                tr = "AAAAAAECEEEEIIIIDNOOOOOx0UUUUYPsaaaaaaeceeeeiiiiOnooooo/0uuuuypy";
+        unsigned char ch = (*p);
+        if ( ch >=192 ) {
+            (*p) = tr[ ch-192 ];
+        }
+        ++p; // http://stackoverflow.com/questions/14094621/
+    }
+    return str;
+}
+
 
 #endif //PROJETO2_UTILITY_H

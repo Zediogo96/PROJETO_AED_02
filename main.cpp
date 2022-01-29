@@ -6,7 +6,8 @@
 
 using namespace std;
 
-int countLines(string filename) {
+int countLines(const string& filename) {
+
     int lines_nr = 0;
     std::string line;
     std::ifstream file(filename);
@@ -20,15 +21,13 @@ int countLines(string filename) {
 }
 
 void init(){
-    main_menu();
-}
-
-int main() {
     Graph graph = Graph(countLines("../Data/stops.csv"), true);
     graph.readStops();
     graph.readLines();
 
-    graph.dijkstra_path(1,5);
-    cout << graph.dijkstra_distance(1,5) << endl;
+    main_menu(graph);
+}
 
+int main() {
+    init();
 }

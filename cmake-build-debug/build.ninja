@@ -61,6 +61,12 @@ build CMakeFiles/PROJETO2.dir/Graph.cpp.obj: CXX_COMPILER__PROJETO2_Debug C$:/Us
   OBJECT_DIR = CMakeFiles\PROJETO2.dir
   OBJECT_FILE_DIR = CMakeFiles\PROJETO2.dir
 
+build CMakeFiles/PROJETO2.dir/Menus/Menu.cpp.obj: CXX_COMPILER__PROJETO2_Debug C$:/Users/zedio/Documents/Documentos/FEUP/2ANO/AED/PROJETO_2/Menus/Menu.cpp || cmake_object_order_depends_target_PROJETO2
+  DEP_FILE = CMakeFiles\PROJETO2.dir\Menus\Menu.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  OBJECT_DIR = CMakeFiles\PROJETO2.dir
+  OBJECT_FILE_DIR = CMakeFiles\PROJETO2.dir\Menus
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target PROJETO2
@@ -69,7 +75,7 @@ build CMakeFiles/PROJETO2.dir/Graph.cpp.obj: CXX_COMPILER__PROJETO2_Debug C$:/Us
 #############################################
 # Link the executable PROJETO2.exe
 
-build PROJETO2.exe: CXX_EXECUTABLE_LINKER__PROJETO2_Debug CMakeFiles/PROJETO2.dir/main.cpp.obj CMakeFiles/PROJETO2.dir/Graph.cpp.obj
+build PROJETO2.exe: CXX_EXECUTABLE_LINKER__PROJETO2_Debug CMakeFiles/PROJETO2.dir/main.cpp.obj CMakeFiles/PROJETO2.dir/Graph.cpp.obj CMakeFiles/PROJETO2.dir/Menus/Menu.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\PROJETO2.dir
