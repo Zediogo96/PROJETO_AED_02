@@ -56,7 +56,7 @@ void shortestStopsMenu(Graph graph);
  * @param nearbyStops Array of the bus stops within the walkable distance
  * @param source The source/starting bus stop
  */
-void select_Stop_Menu(Graph graph, const vector<int>& nearbyStops, int& source);
+bool select_Stop_Menu(Graph graph, const vector<int>& nearbyStops, int& source);
 
 /**
  * @brief Menu for the best path in regards to shortest distance between bus stops. Has options for the user to choose between giving a bus stop code or a location in latitude and longitude for the starting and ending bus stops.
