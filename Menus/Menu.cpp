@@ -9,14 +9,6 @@
 
 using namespace std;
 
-pair<int, int> getInputCodes(Graph graph);
-int getDestinationCode(Graph graph);
-vector<int> getInputCoordinates(Graph graph);
-void shortestStopsMenu(Graph graph);
-void select_Stop_Menu(Graph graph, const vector<int>& nearbyStops, int & source);
-void lessDistanceMenu(Graph graph);
-void lessZonesMenu(Graph graph);
-
 void main_menu(const Graph& graph){
 
     char option;

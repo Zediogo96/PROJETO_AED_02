@@ -2,7 +2,6 @@
 #include <fstream>
 #include "Graph.h"
 #include "Menus/Menu.h"
-#include <math.h>
 
 using namespace std;
 

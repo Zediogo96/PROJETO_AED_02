@@ -8,7 +8,6 @@
 #include <queue>
 #include <stack>
 #include "Utility.h"
-#include <set>
 
 
 // Constructor: nr nodes and direction (default: undirected)
@@ -73,16 +72,6 @@ void Graph::readLines() {
     }
 
     file.close();
-}
-
-int Graph::checkIfNameExists(string& s){
-
-    toUpperCase(s);
-
-    for (int i = 1; i <= n; i++) {
-        if (nodes[i].name == s) return i;
-    }
-    return -1;
 }
 
 int Graph::checkIfCodeExists(string& s) {
@@ -185,13 +174,8 @@ void Graph::bfsPath(int source, int dest) {
     }
 }
 
-// ----------------------------------------------------------
-// 1) Algoritmo de Dijkstra e caminhos mais curtos
-// ----------------------------------------------------------
+//Algoritmo de Dijkstra e caminhos mais curtos
 
-// ..............................
-// a) Dist�ncia entre dois n�s
-// TODO
 double Graph::dijkstra_distance(int a, int b) {
     dijkstra(a, b);
 
