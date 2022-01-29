@@ -8,6 +8,7 @@
 #include <queue>
 #include <stack>
 #include "Utility.h"
+#include <set>
 
 
 // Constructor: nr nodes and direction (default: undirected)
@@ -175,6 +176,7 @@ void Graph::bfsPath(int source, int dest) {
         dest = nodes[dest].pred;
     }
 
+    cout << q.size() << "bfs";
     cout << "[" << nodes[source].code << ": " << nodes[source].name << "]" << endl;
 
     while(!q.empty()) {
@@ -197,11 +199,8 @@ double Graph::dijkstra_distance(int a, int b) {
     return nodes[b].dist;
 }
 
-// ..............................
-// b) Caminho mais curto entre dois n�s
-// TODO
 list<int> Graph::dijkstra_path(int a, int b) {
-    dijkstra(a, b);
+    /*dijkstra(a, b);*/
     list<int> path;
 
     if (nodes[b].dist == INFINITE) return path;
@@ -212,7 +211,11 @@ list<int> Graph::dijkstra_path(int a, int b) {
         path.push_front(v); // IMPORTANTE FAZER PUSH_FRONT
     }
 
+    cout << path.size() << "dijkstra";
     for (auto elem : path) cout << "[" << nodes[elem].code << ", " << nodes[elem].name << "]" << endl;
+
+    cout << "\n Your total distance for this route is: " <<
+         dijkstra_distance(a, b) / 1000.0f << " kilometers! \n";
 
     return path;
 }
@@ -244,6 +247,34 @@ void Graph::dijkstra(int s, int b) {
             double w = elem.weight;
 
             if (!nodes[e].visited && (nodes[u].dist + w < nodes[e].dist)) {
+                nodes[e].dist = nodes[u].dist + w;
+                q.decreaseKey(e, nodes[e].dist);
+                nodes[e].pred = u;
+            }
+        }
+    }
+}
+
+void Graph::dijkstraZones(int src) {
+    MinHeap<int, double> q(n-1, -1);
+    for (int v=1; v<=n; v++) {
+        nodes[v].dist = INFINITE;
+        q.insert(v, INFINITE);
+        nodes[v].visited = false;
+    }
+    nodes[src].dist = 0;
+    q.decreaseKey(src, 0);
+    nodes[src].pred = src;
+    while (q.getSize()>0) {
+        int u = q.removeMin();
+        nodes[u].visited = true;
+        for (auto elem : nodes[u].adj) {
+            int e = elem.dest;
+            double w;
+            if (nodes[u].zone != nodes[e].zone) w = 1;
+            else w = 0;
+
+            if (!nodes[e].visited && nodes[u].dist + w < nodes[e].dist) {
                 nodes[e].dist = nodes[u].dist + w;
                 q.decreaseKey(e, nodes[e].dist);
                 nodes[e].pred = u;

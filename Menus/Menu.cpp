@@ -15,6 +15,7 @@ vector<int> getInputCoordinates(Graph graph);
 void shortestStopsMenu(Graph graph);
 void select_Stop_Menu(Graph graph, const vector<int>& nearbyStops, int & source);
 void lessDistanceMenu(Graph graph);
+void lessZonesMenu(Graph graph);
 
 void main_menu(const Graph& graph){
 
@@ -33,6 +34,7 @@ void main_menu(const Graph& graph){
         std::cout << "|                                   |" << std::endl;
         std::cout << "|   [1] Fewer Number of Stops       |" << std::endl;
         std::cout << "|   [2] Less Distance               |" << std::endl;
+        std::cout << "|   [3] Less Zone Changes           |" << std::endl;
         std::cout << "|                                   |" << std::endl;
         std::cout << "|   [0] Exit                        |" << std::endl;
         std::cout << "|___________________________________|" << std::endl;
@@ -47,6 +49,9 @@ void main_menu(const Graph& graph){
                 break;
             case '2':
                 lessDistanceMenu(graph);
+                break;
+            case '3':
+                lessZonesMenu(graph);
                 break;
             case '0': return;
             default: std::cout << "Invalid Input \n:";
@@ -67,7 +72,7 @@ void shortestStopsMenu(Graph graph){
     while (true) {
 
         std::cout << "_____________________________________" << std::endl;
-        std::cout << "|        Fewer Stops Option         |" << std::endl;
+        std::cout << "|         FEWER STOPS ROUTE         |" << std::endl;
         std::cout << "|___________________________________|" << std::endl;
         std::cout << "|   [1] By Location                 |" << std::endl;
         std::cout << "|   [2] By Code of Stops            |" << std::endl;
@@ -111,7 +116,7 @@ void lessDistanceMenu(Graph graph) {
     while (true) {
 
         std::cout << "_____________________________________" << std::endl;
-        std::cout << "|           Route Options           |" << std::endl;
+        std::cout << "|       SHORTEST DISTANCE ROUTE     |" << std::endl;
         std::cout << "|___________________________________|" << std::endl;
         std::cout << "|   [1] By Location                 |" << std::endl;
         std::cout << "|   [2] By Code of Stops            |" << std::endl;
@@ -130,14 +135,75 @@ void lessDistanceMenu(Graph graph) {
                 select_Stop_Menu(graph,test, s);
                 d = getDestinationCode(graph);
                 graph.dijkstra_path(s,d);
+                cout << "\n Your total distance for this route is: " <<
+                     graph.dijkstra_distance(s, d) / 1000.0f << " kilometers! \n";
 
                 break;
             case '2':
 
                 input = getInputCodes(graph);
+                graph.dijkstra(input.first, input.second);
                 graph.dijkstra_path(input.first, input.second);
 
+                cout << "\n Your total distance for this route is: " <<
+                graph.dijkstra_distance(input.first, input.second) / 1000.0f << " kilometers! \n";
+
                 break;
+            case '0': return;
+            default: std::cout << "Invalid Input \n:";
+                system("pause");
+        }
+    }
+}
+
+void lessZonesMenu(Graph graph) {
+    int s, d;
+
+    char option;
+
+    vector<int> test;
+
+    pair<int,int> input;
+
+    while (true) {
+
+        std::cout << "_____________________________________" << std::endl;
+        std::cout << "|       SHORTEST DISTANCE ROUTE     |" << std::endl;
+        std::cout << "|___________________________________|" << std::endl;
+        std::cout << "|   [1] By Location                 |" << std::endl;
+        std::cout << "|   [2] By Code of Stops            |" << std::endl;
+        std::cout << "|   [0] Go back                     |" << std::endl;
+        std::cout << "|___________________________________|" << std::endl;
+
+        std::cout << "Please input your choice: " << std::endl << std::flush;
+        std::cin >> option;
+
+        std::cin.ignore();
+
+        switch ((char) option) {
+            case '1':
+
+                test = getInputCoordinates(graph);
+                select_Stop_Menu(graph,test, s);
+                d = getDestinationCode(graph);
+
+                graph.dijkstraZones(s);
+                graph.dijkstra_path(s,d);
+
+
+                break;
+
+            case '2':
+
+                input = getInputCodes(graph);
+                graph.dijkstraZones(input.first);
+                graph.dijkstra_path(input.first, input.second);
+
+                cout << "\n Your total distance for this route is: " <<
+                graph.dijkstra_distance(input.first, input.second) / 1000.0f << " kilometers! \n";
+
+                break;
+
             case '0': return;
             default: std::cout << "Invalid Input \n:";
                 system("pause");

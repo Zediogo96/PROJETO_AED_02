@@ -19,6 +19,7 @@ class Graph {
         int dest;   // Destination node
         double weight; // An integer weight
         string line; // Bus line
+        string zone;
     };
 
     struct Node {
@@ -34,8 +35,6 @@ class Graph {
     bool hasDir;        // false: undirect; true: directed
     vector<Node> nodes; // The list of nodes being represented
     map<string, int> stops;
-
-    void dijkstra(int s, int b);
 
 public:
     // Constructor: nr nodes and direction (default: undirected)
@@ -67,6 +66,10 @@ public:
     int checkIfCodeExists(string &s);
 
     vector<Node> getNodes() { return nodes; }
+
+    void dijkstraZones(int src);
+
+    void dijkstra(int s, int b);
 };
 
 #endif //PROJETO2_GRAPH_H

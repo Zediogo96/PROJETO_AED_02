@@ -26,15 +26,21 @@ void init(){
     graph.readLines();
 
 
-    /*graph.dijkstra_path(100,340);
 
+    graph.dijkstra(2410,1439);
+   graph.dijkstra_path(2410,1439);
+
+    /*graph.bfsPath(100,340);*/
     cout << "----------------------------" << endl;
 
-    graph.bfsPath(100,340);*/
+
+
+    graph.dijkstraZones(2410);
+    graph.dijkstra_path(2410, 1439);
 
     /* graph.findNearNodes(41.1488,-8.610426, 100);*/
 
-    main_menu(graph);
+    /*main_menu(graph);*/
 
 }
 
