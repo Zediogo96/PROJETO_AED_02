@@ -25,7 +25,7 @@ void main_menu(const Graph& graph){
         std::cout << "|   Select your desired route:      |" << std::endl;
         std::cout << "|                                   |" << std::endl;
         std::cout << "|   [1] Fewer Number of Stops       |" << std::endl;
-        std::cout << "|   [2] Less Distance               |" << std::endl;
+        std::cout << "|   [2] Shortest Distance           |" << std::endl;
         std::cout << "|   [3] Less Zone Changes           |" << std::endl;
         std::cout << "|                                   |" << std::endl;
         std::cout << "|   [0] Exit                        |" << std::endl;
