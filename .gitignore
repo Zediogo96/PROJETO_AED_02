@@ -30,8 +30,11 @@
 *.exe
 *.out
 *.app
+<<<<<<< HEAD
 
 /html/
 cmake-build-debug/
 .idea/
 build/
+
+

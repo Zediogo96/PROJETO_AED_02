@@ -1,3 +1,0 @@
-"C:\Program Files\CMake\bin\cmake.exe" -E rm -f CMakeFiles\PROJETO2.dir/objects.a
-C:\msys64\mingw64\bin\ar.exe qc CMakeFiles\PROJETO2.dir/objects.a @CMakeFiles\PROJETO2.dir\objects1.rsp
-C:\msys64\mingw64\bin\x86_64-w64-mingw32-g++.exe -g -Wl,--whole-archive CMakeFiles\PROJETO2.dir/objects.a -Wl,--no-whole-archive -o PROJETO2.exe -Wl,--out-implib,libPROJETO2.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\PROJETO2.dir\linklibs.rsp
