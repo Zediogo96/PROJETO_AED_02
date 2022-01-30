@@ -24,6 +24,21 @@ void init(){
     graph.readStops();
     graph.readLines();
 
+    // EXEMPLO NUMERO DE ZONAS A FUNCIONAR (NÃO APAGAR)
+    /*graph.getPath(234,2000, "stops");
+    cout << "---------------------" << endl;
+    graph.getPath(234,2000, "distance");
+    cout << "---------------------" << endl;
+    graph.getPath(234, 2000, "zones");*/
+
+
+    // EXEMPLO NUMERO DE BFS A FUNCIONAR (NÃO APAGAR)
+    /*graph.getPath(1000,2300, "stops");
+    cout << "---------------------" << endl;
+    graph.getPath(1000,2300, "distance");*/
+
+
+
     main_menu(graph);
 }
 

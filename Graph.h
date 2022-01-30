@@ -102,7 +102,7 @@ public:
      *
      * @return list<int> A list of the nodes belonging to the path in order from source to destination
      */
-    list<int> dijkstra_path(int a, int b);
+    list<int> getPath(int a, int b, const string& type);
 
     /**
      * @brief Method used to read data from the 'stops.csv' file and fill the nodes of the graph with the read data
@@ -155,7 +155,7 @@ public:
      *
      * @param src The source node
      */
-    void dijkstraZones(int src);
+    void dijkstraZones(int src, int b);
 
     /**
      * @brief Dijkstra's algorithm. Used to find the shortest distance in a weighted graph between two nodes. Time complexity of O(V + E*log(V)) as a priority queue is used, where V is the number of nodes and E the number of edges in the graph.

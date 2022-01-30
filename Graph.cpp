@@ -9,7 +9,6 @@
 #include <stack>
 #include "Utility.h"
 
-
 // Constructor: nr nodes and direction (default: undirected)
 Graph::Graph(int num, bool dir) : n(num), hasDir(dir), nodes(num+1) {}
 
@@ -165,11 +164,11 @@ void Graph::bfsPath(int source, int dest) {
         dest = nodes[dest].pred;
     }
 
-    cout << q.size() << "bfs";
+    /*cout << q.size() << "bfs";*/
     cout << "[" << nodes[source].code << ": " << nodes[source].name << "]" << endl;
 
     while(!q.empty()) {
-        cout << " -> " << "[" <<  nodes[q.top()].code << ": " << nodes[q.top()].name << "]" << endl;
+        cout << "[" <<  nodes[q.top()].code << ": " << nodes[q.top()].name << "]" << endl;
         q.pop();
     }
 }
@@ -177,29 +176,43 @@ void Graph::bfsPath(int source, int dest) {
 //Algoritmo de Dijkstra e caminhos mais curtos
 
 double Graph::dijkstra_distance(int a, int b) {
-    dijkstra(a, b);
-
+    dijkstra(a,b);
     if (nodes[b].dist == INFINITE) return -1;
     return nodes[b].dist;
 }
 
-list<int> Graph::dijkstra_path(int a, int b) {
-    /*dijkstra(a, b);*/
+list<int> Graph::getPath(int a, int b, const string& type) {
+
+    if (type == "distance") dijkstra_distance(a,b);
+    else if (type == "stops") bfs(a,b);
+    else dijkstraZones(a,b);
+
+    int tmp;
+    int zoneCounter = 1;
     list<int> path;
 
     if (nodes[b].dist == INFINITE) return path;
     path.push_back(b);
     int v = b;
     while (v != a) {
-        v = nodes[v].pred;
+        tmp = nodes[v].pred;
+        if (nodes[v].zone != nodes[tmp].zone) zoneCounter++;
+        v = tmp;
         path.push_front(v); // IMPORTANTE FAZER PUSH_FRONT
     }
 
-    cout << path.size() << "dijkstra";
     for (auto elem : path) cout << "[" << nodes[elem].code << ", " << nodes[elem].name << "]" << endl;
 
-    cout << "\n Your total distance for this route is: " <<
-         dijkstra_distance(a, b) / 1000.0f << " kilometers! \n";
+    if (type == "distance") {
+        cout << "\n Your total distance for this route is: " <<
+             dijkstra_distance(a, b) / 1000.0f << " kilometers! \n";
+        cout << "You passed through " << zoneCounter << " zones in total!" << endl;
+    }
+    else if (type == "zones") {
+        cout << "You passed through " << zoneCounter << " zones in total!" << endl;
+
+    }
+    cout << "You voyaged across " << path.size() << " Bus Stops in total!" << endl;
 
     return path;
 }
@@ -239,24 +252,29 @@ void Graph::dijkstra(int s, int b) {
     }
 }
 
-void Graph::dijkstraZones(int src) {
+void Graph::dijkstraZones(int src, int b) {
     MinHeap<int, double> q(n-1, -1);
+
     for (int v=1; v<=n; v++) {
         nodes[v].dist = INFINITE;
         q.insert(v, INFINITE);
         nodes[v].visited = false;
+        nodes[v].pred = -1;
     }
+
     nodes[src].dist = 0;
     q.decreaseKey(src, 0);
     nodes[src].pred = src;
+
     while (q.getSize()>0) {
         int u = q.removeMin();
         nodes[u].visited = true;
-        for (auto elem : nodes[u].adj) {
+        if (u == b) return;
+        for (const auto& elem : nodes[u].adj) {
             int e = elem.dest;
             double w;
-            if (nodes[u].zone != nodes[e].zone) w = 1;
-            else w = 0;
+
+            (nodes[u].zone != nodes[e].zone) ? w = 1 : w = 0;
 
             if (!nodes[e].visited && nodes[u].dist + w < nodes[e].dist) {
                 nodes[e].dist = nodes[u].dist + w;

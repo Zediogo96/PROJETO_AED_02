@@ -83,13 +83,13 @@ void shortestStopsMenu(Graph graph){
                 s = select_Stop_Menu(graph,test, s);
                 if (s) {
                     d = getDestinationCode(graph);
-                    graph.bfsPath(s, d);
+                    graph.getPath(s, d, "stops");
                 }
 
                 break;
             case '2':
                 input = getInputCodes(graph);
-                graph.bfsPath(input.first, input.second);
+                graph.getPath(input.first, input.second, "stops");
                 break;
             case '0': return;
             default: std::cout << "Invalid Input \n:";
@@ -130,15 +130,14 @@ void lessDistanceMenu(Graph graph) {
 
                 if (s) {
                     d = getDestinationCode(graph);
-                    graph.dijkstra_path(s,d);
+                    graph.getPath(s, d, "distance");
                 }
 
                 break;
             case '2':
 
                 input = getInputCodes(graph);
-                graph.dijkstra(input.first, input.second);
-                graph.dijkstra_path(input.first, input.second);
+                graph.getPath(input.first, input.second, "distance");
 
                 break;
 
@@ -180,9 +179,7 @@ void lessZonesMenu(Graph graph) {
                 s = select_Stop_Menu(graph,test, s);
                 if (s) {
                     d = getDestinationCode(graph);
-                    graph.dijkstraZones(s);
-                    graph.dijkstra_path(s,d);
-
+                    graph.getPath(s, d, "zones");
                 }
 
                 break;
@@ -190,8 +187,7 @@ void lessZonesMenu(Graph graph) {
             case '2':
 
                 input = getInputCodes(graph);
-                graph.dijkstraZones(input.first);
-                graph.dijkstra_path(input.first, input.second);
+                graph.getPath(input.first, input.second, "zones");
 
                 break;
 
