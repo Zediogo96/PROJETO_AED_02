@@ -272,6 +272,7 @@ void Graph::dijkstraZones(int src, int b) {
         if (u == b) return;
         for (const auto& elem : nodes[u].adj) {
             int e = elem.dest;
+
             double w;
 
             (nodes[u].zone != nodes[e].zone) ? w = 1 : w = 0;

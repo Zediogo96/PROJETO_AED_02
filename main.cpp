@@ -19,25 +19,29 @@ int countLines(const string& filename) {
     return lines_nr;
 }
 
-void init(){
-    Graph graph = Graph(countLines("../Data/stops.csv"), true);
-    graph.readStops();
-    graph.readLines();
+void test(Graph graph) {
 
-    // EXEMPLO NUMERO DE ZONAS A FUNCIONAR (NÃO APAGAR)
+    // EXEMPLO NUMERO DE ZONAS (e dijkstra distance) A FUNCIONAR (NÃO APAGAR)
+
     /*graph.getPath(234,2000, "stops");
     cout << "---------------------" << endl;
     graph.getPath(234,2000, "distance");
     cout << "---------------------" << endl;
     graph.getPath(234, 2000, "zones");*/
 
-
     // EXEMPLO NUMERO DE BFS A FUNCIONAR (NÃO APAGAR)
+
     /*graph.getPath(1000,2300, "stops");
     cout << "---------------------" << endl;
     graph.getPath(1000,2300, "distance");*/
+}
 
+void init(){
+    Graph graph = Graph(countLines("../Data/stops.csv"), true);
+    graph.readStops();
+    graph.readLines();
 
+    /*test(graph);*/
 
     main_menu(graph);
 }
